@@ -1,75 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>don7group - DON 7 GROUP We Serve with Pride</title>
-<meta name="description" content="don7group - DON 7 GROUP Electronics & Repair">
+<title>Don 7 Group - Sales Manager 0723398997</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:linear-gradient(135deg,#0a1930,#1e3a8a,#3b82f6);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
-.card{background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:30px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-.logo-wrap{width:110px;height:110px;background:white;border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;border:3px solid #f59e0b;overflow:hidden}
-.logo-wrap img{width:100%;height:100%;object-fit:contain}
-h1{font-size:28px;margin-bottom:5px}.don{color:#60a5fa}.seven{color:#f87171}.group{color:white}
-.sub{color:#fbbf24;font-size:15px;font-weight:bold}.motto{color:rgba(255,255,255,0.8);font-size:13px;font-style:italic;margin:8px 0 20px}
-input{width:100%;padding:13px 15px;margin:8px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:white;outline:none}
-input::placeholder{color:rgba(255,255,255,0.6)}
-button{width:100%;padding:13px;background:#fbbf24;color:#0a1930;border:none;border-radius:10px;font-weight:bold;font-size:16px;margin-top:12px;cursor:pointer}
-button:hover{background:#f59e0b}
-.footer{margin-top:18px;color:white;font-size:13px;line-height:1.6}
-#dashboard{display:none;color:white;text-align:left}
-#dashboard h2{color:#fbbf24;text-align:center;margin-bottom:15px}
-.item{background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;margin:8px 0}
-.logout{background:rgba(255,255,255,0.2);color:white;margin-top:20px}
-#error{color:#f87171;font-size:13px;margin-top:10px;display:none}
+body{margin:0;font-family:Arial;background:#f0f2f5}
+.header{background:#0a192f;color:white;padding:12px;display:flex;align-items:center;justify-content:space-between}
+.header div{display:flex;align-items:center;gap:10px}
+.header img{width:50px;height:50px;border-radius:50%;background:white}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:10px}
+.stat{background:white;padding:12px;border-radius:8px;text-align:center}
+.stat h2{margin:3px 0;font-size:18px;color:#0a192f}
+.tabs{display:flex;background:white;margin:5px 10px;border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.tab{flex:1;padding:10px;text-align:center;cursor:pointer;border:none;background:white;font-weight:bold;font-size:12px;min-width:60px}
+.tab.active{background:#0a192f;color:white}
+.content{padding:10px}
+.card{background:white;padding:12px;border-radius:8px;margin-bottom:8px}
+input,select,button{width:100%;padding:9px;margin:4px 0;border-radius:5px;border:1px solid #ddd;box-sizing:border-box}
+button{background:#0a192f;color:white;font-weight:bold;border:none;cursor:pointer}
+button.green{background:#25D366} button.red{background:#d32f2f}
+table{width:100%;border-collapse:collapse;background:white;font-size:13px}
+th,td{padding:8px;text-align:left;border-bottom:1px solid #eee}
+th{background:#0a192f;color:white}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#0a192f;display:flex;align-items:center;justify-content:center;z-index:999}
+.loginBox{background:white;padding:25px;border-radius:10px;width:90%;max-width:350px;text-align:center}
+.publicBar{background:#64ffda;color:#0a192f;padding:8px;text-align:center;font-weight:bold}
 </style>
 </head>
 <body>
-
-<div class="card" id="loginBox">
-<div class="logo-wrap">
-<img src="logo.png" alt="DON 7 GROUP">
+<div id="loginScreen">
+<div class="loginBox">
+<h2>DON 7 GROUP</h2>
+<p>We Serve with Pride</p>
+<p>Electronics & Repair Shop</p>
+<input type="password" id="pass" placeholder="Password: 0723398997">
+<button onclick="login()">LOGIN AS ADMIN</button>
+<br><br>
+<button class="green" onclick="enterAsCustomer()">I AM CUSTOMER - VIEW SHOP</button>
+<p style="font-size:11px;color:gray">Admin password: 0723398997</p>
 </div>
-<h1><span class="don">DON</span> <span class="seven">7</span> <span class="group">GROUP</span></h1>
-<div class="sub">Electronics & Repair</div>
-<div class="motto">We Serve with Pride</div>
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
-<div id="error">Wrong username or password!</div>
-<button onclick="doLogin()">Login</button>
-<div class="footer">📞 0723398997<br>© don7group</div>
 </div>
-
-<div class="card" id="dashboard">
-<h2>Welcome don7group ✅</h2>
-<p style="text-align:center;margin-bottom:15px">We Serve with Pride 🔥</p>
-<div class="item">📱 Phone Repair</div>
-<div class="item">💻 Laptop & Electronics</div>
-<div class="item">🔌 Accessories & Sales</div>
-<div class="item">📞 Contact: 0723398997</div>
-<div class="item">📍 don7group - DON 7 GROUP</div>
-<button class="logout" onclick="doLogout()">Logout</button>
+<div class="header">
+<div><div><b>DON 7 GROUP</b><br><small id="viewMode">Admin - 0723398997</small></div></div>
+<div><button onclick="logout()" style="width:auto;padding:6px 12px">Logout</button></div>
 </div>
-
+<div class="publicBar">📱 Welcome! Order via WhatsApp: 0723398997</div>
+<div class="stats" id="adminStats">
+<div class="stat"><small>Today Sales</small><h2 id="todaySales">0</h2></div>
+<div class="stat"><small>Today Profit</small><h2 id="todayProfit">0</h2></div>
+<div class="stat"><small>Mpesa Till</small><h2 id="tillBal">0</h2></div>
+<div class="stat"><small>Debts Owed</small><h2 id="totalDebts" style="color:red">0</h2></div>
+</div>
+<div class="tabs" id="tabs">
+<button class="tab active" onclick="showTab('sell')">SELL</button>
+<button class="tab" onclick="showTab('products')">STOCK</button>
+<button class="tab" onclick="showTab('sales')">HISTORY</button>
+<button class="tab" onclick="showTab('mpesa')">MPESA</button>
+<button class="tab" onclick="showTab('debts')">DEBTS</button>
+<button class="tab" onclick="showTab('shop')">PUBLIC SHOP</button>
+<button class="tab" onclick="showTab('add')">ADD ITEM</button>
+</div>
+<div class="content">
+<div id="sell" class="tabContent">
+<div class="card">
+<h3>💰 Make Sale - Don 7 Group</h3>
+<select id="sellProduct"></select>
+<input type="number" id="sellQty" value="1" min="1" placeholder="Quantity">
+<input type="number" id="sellPrice" placeholder="Price">
+<select id="payMethod"><option>Cash</option><option>Mpesa Till</option><option>Mpesa Personal</option><option>Credit/Debt</option></select>
+<input id="custNameSell" placeholder="Customer Name (if debt)" style="display:none">
+<button class="green" onclick="makeSale()">SELL NOW</button>
+<div id="sellMsg"></div>
+</div>
+<div class="card"><h4>Low Stock Alert</h4><div id="quickStock"></div></div>
+</div>
+<div id="products" class="tabContent" style="display:none">
+<table><thead><tr><th>Product</th><th>Stk</th><th>Buy</th><th>Sell</th><th>X</th></tr></thead><tbody id="prodTable"></tbody></table>
+</div>
+<div id="sales" class="tabContent" style="display:none">
+<div class="card"><button onclick="exportExcel()">Export to Excel CSV</button> <button class="red" onclick="clearSales()">Clear History</button></div>
+<table><thead><tr><th>Time</th><th>Item</th><th>Qty</th><th>Total</th><th>Pay</th></tr></thead><tbody id="salesTable"></tbody></table>
+</div>
+<div id="mpesa" class="tabContent" style="display:none">
+<div class="card">
+<h3>📲 Mpesa Till Manager</h3>
+<p>Till Balance: <b id="tillDisplay">KES 0</b></p>
+<input type="number" id="tillAmount" placeholder="Amount">
+<select id="tillType"><option value="in">Cash In / Float Add</option><option value="out">Cash Out / Withdraw</option><option value="sale">Mpesa Sale</option></select>
+<input id="tillNote" placeholder="Note e.g. Float from bank">
+<button onclick="updateTill()">Update Till</button>
+</div>
+<div class="card"><h4>Till History</h4><div id="tillHistory"></div></div>
+</div>
+<div id="debts" class="tabContent" style="display:none">
+<div class="card">
+<h3>📓 Customer Debts Book</h3>
+<input id="debtName" placeholder="Customer Name">
+<input id="debtPhone" placeholder="Phone e.g. 07xx">
+<input type="number" id="debtAmount" placeholder="Amount Owed KES">
+<input id="debtItem" placeholder="Item Taken">
+<button onclick="addDebt()">Add Debt</button>
+</div>
+<table><thead><tr><th>Name</th><th>Phone</th><th>Amount</th><th>Item</th><th>Paid</th></tr></thead><tbody id="debtTable"></tbody></table>
+</div>
+<div id="shop" class="tabContent" style="display:none">
+<div class="card" style="text-align:center">
+<h2>Don 7 Group Electronics</h2><p>We Serve with Pride</p><p>📞 0723398997</p>
+<a href="https://wa.me/254723398997" target="_blank" style="display:block;background:#25D366;color:white;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold">Chat on WhatsApp</a>
+</div>
+<div id="publicProducts"></div>
+</div>
+<div id="add" class="tabContent" style="display:none">
+<div class="card">
+<h3>Add Product</h3>
+<input id="pName" placeholder="Name e.g. Opas Phone">
+<input type="number" id="pStock" placeholder="Stock Qty">
+<input type="number" id="pBuy" placeholder="Buy Price">
+<input type="number" id="pSell" placeholder="Sell Price">
+<button onclick="addProduct()">Save</button>
+</div>
+</div>
+</div>
 <script>
-function doLogin(){
-let u=document.getElementById('username').value.trim();
-let p=document.getElementById('password').value.trim();
-if(u==="don7group" && p==="Don7group"){
-document.getElementById('loginBox').style.display='none';
-document.getElementById('dashboard').style.display='block';
-document.getElementById('error').style.display='none';
-}else{
-document.getElementById('error').style.display='block';
+let products = JSON.parse(localStorage.getItem('don7_products_v2')||'null') || [
+{name:"Opas Phone",stock:15,buy:1200,sell:1500},
+{name:"Feature Phone",stock:20,buy:900,sell:1200},
+{name:"Earphones",stock:50,buy:150,sell:250},
+{name:"USB Cables",stock:80,buy:80,sell:150},
+{name:"BF6 Screen",stock:10,buy:400,sell:650},
+{name:"Power Bank",stock:12,buy:800,sell:1200}
+];
+let sales = JSON.parse(localStorage.getItem('don7_sales_v2')||'[]');
+let till = JSON.parse(localStorage.getItem('don7_till_v2')||'{"balance":0,"history":[]}');
+let debts = JSON.parse(localStorage.getItem('don7_debts_v2')||'[]');
+function saveAll(){localStorage.setItem('don7_products_v2',JSON.stringify(products));localStorage.setItem('don7_sales_v2',JSON.stringify(sales));localStorage.setItem('don7_till_v2',JSON.stringify(till));localStorage.setItem('don7_debts_v2',JSON.stringify(debts));render();}
+function login(){if(document.getElementById('pass').value==='0723398997'){document.getElementById('loginScreen').style.display='none';render();}else alert('Wrong password! Use 0723398997');}
+function enterAsCustomer(){document.getElementById('loginScreen').style.display='none';document.getElementById('viewMode').innerText='Customer View';document.getElementById('adminStats').style.display='none';document.getElementById('tabs').innerHTML='<button class=tab active onclick=showTab("shop")>SHOP</button>';showTab('shop');renderPublic();}
+function logout(){location.reload();}
+function showTab(t){document.querySelectorAll('.tabContent').forEach(c=>c.style.display='none');document.getElementById(t).style.display='block';document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));if(event&&event.target)event.target.classList.add('active');render();}
+document.getElementById('payMethod').onchange=function(){document.getElementById('custNameSell').style.display=this.value==='Credit/Debt'?'block':'none';};
+function addProduct(){let n=document.getElementById('pName').value,s=+document.getElementById('pStock').value,b=+document.getElementById('pBuy').value,sl=+document.getElementById('pSell').value;if(!n)return alert('name');let ex=products.find(p=>p.name.toLowerCase()===n.toLowerCase());if(ex){ex.stock+=s;ex.buy=b;ex.sell=sl;}else products.push({name:n,stock:s,buy:b,sell:sl});saveAll();alert('Saved');}
+function render(){
+let today=new Date().toDateString();let tSales=sales.filter(s=>new Date(s.time).toDateString()===today);
+document.getElementById('todaySales').innerText='KES '+tSales.reduce((a,b)=>a+b.total,0);
+document.getElementById('todayProfit').innerText='KES '+tSales.reduce((a,b)=>a+b.profit,0);
+document.getElementById('tillBal').innerText='KES '+till.balance;
+document.getElementById('totalDebts').innerText='KES '+debts.reduce((a,b)=>a+b.amount,0);
+document.getElementById('tillDisplay').innerText='KES '+till.balance;
+document.getElementById('prodTable').innerHTML=products.map((p,i)=><tr><td>${p.name}</td><td>${p.stock}</td><td>${p.buy}</td><td>${p.sell}</td><td><button onclick="products.splice(${i},1);saveAll()" style="padding:3px">X</button></td></tr>).join('');
+document.getElementById('sellProduct').innerHTML=products.map((p,i)=><option value="${i}">${p.name} - ${p.stock} left - ${p.sell}</option>).join('');
+document.getElementById('salesTable').innerHTML=sales.slice().reverse().map(s=><tr><td>${new Date(s.time).toLocaleTimeString()}</td><td>${s.name}</td><td>${s.qty}</td><td>${s.total}</td><td>${s.pay||'Cash'}</td></tr>).join('');
+document.getElementById('quickStock').innerHTML=products.map(p=>${p.name}: <b>${p.stock}</b> ${p.stock<5?'<span style=color:red>LOW!</span>':''}<br>).join('');
+document.getElementById('tillHistory').innerHTML=till.history.slice().reverse().map(h=>${new Date(h.time).toLocaleString()} - ${h.type} - KES ${h.amount} - ${h.note}<br>).join('');
+document.getElementById('debtTable').innerHTML=debts.map((d,i)=><tr><td>${d.name}</td><td>${d.phone}</td><td>KES ${d.amount}</td><td>${d.item}</td><td><button onclick="debts.splice(${i},1);till.balance+=d.amount;till.history.push({time:new Date().toISOString(),type:'Debt Paid',amount:d.amount,note:d.name});saveAll()" style="padding:3px;background:green">Paid</button></td></tr>).join('');
+renderPublic();
+let sel=document.getElementById('sellProduct').value;if(sel!=='')document.getElementById('sellPrice').value=products[sel].sell;
+document.getElementById('sellProduct').onchange=()=>{document.getElementById('sellPrice').value=products[document.getElementById('sellProduct').value].sell};
 }
+function renderPublic(){
+document.getElementById('publicProducts').innerHTML=products.map(p=><div class=card style=text-align:center><h3>${p.name}</h3><p>KES ${p.sell} ${p.stock<1?'<span style=color:red>Out of Stock</span>':''}</p><a href="https://wa.me/254723398997?text=Hi Don 7 Group, nataka ${encodeURIComponent(p.name)}" target="_blank" style="display:block;background:#25D366;color:white;padding:8px;border-radius:5px;text-decoration:none">Order on WhatsApp</a></div>).join('');
 }
-function doLogout(){
-document.getElementById('dashboard').style.display='none';
-document.getElementById('loginBox').style.display='block';
-document.getElementById('username').value='';
-document.getElementById('password').value='';
+function makeSale(){
+let idx=document.getElementById('sellProduct').value,qty=+document.getElementById('sellQty').value,price=+document.getElementById('sellPrice').value,pay=document.getElementById('payMethod').value;
+if(products[idx].stock<qty)return alert('No stock');
+products[idx].stock-=qty;
+let profit=(price-products[idx].buy)*qty;
+if(pay.includes('Mpesa')){till.balance+=price*qty;till.history.push({time:new Date().toISOString(),type:'Mpesa Sale - '+products[idx].name,amount:price*qty,note:pay});}
+if(pay==='Credit/Debt'){let cn=document.getElementById('custNameSell').value||'Customer';debts.push({name:cn,phone:'',amount:price*qty,item:products[idx].name+' x'+qty,time:new Date().toISOString()});}
+sales.push({time:new Date().toISOString(),name:products[idx].name,qty,total:price*qty,profit,pay});
+saveAll();document.getElementById('sellMsg').innerHTML=✅ Sold ${products[idx].name} x${qty} = KES ${price*qty} via ${pay}<br><button onclick="window.print()">Print Receipt</button>;
 }
+function updateTill(){let a=+document.getElementById('tillAmount').value,t=document.getElementById('tillType').value,n=document.getElementById('tillNote').value;if(!a)return alert('amount');if(t==='out')till.balance-=a;else till.balance+=a;till.history.push({time:new Date().toISOString(),type:t,amount:a,note:n});saveAll();alert('Till Updated');}
+function addDebt(){let n=document.getElementById('debtName').value,ph=document.getElementById('debtPhone').value,am=+document.getElementById('debtAmount').value,it=document.getElementById('debtItem').value;if(!n||!am)return alert('fill');debts.push({name:n,phone:ph,amount:am,item:it,time:new Date().toISOString()});saveAll();}
+function clearSales(){if(confirm('Clear?')){sales=[];saveAll();}}
+function exportExcel(){let csv='Time,Product,Qty,Total,Profit,Pay\n'+sales.map(s=>${s.time},${s.name},${s.qty},${s.total},${s.profit},${s.pay}).join('\n');let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Don7_Sales.csv';a.click();}
 </script>
 </body>
 </html>
