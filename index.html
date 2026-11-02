@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>don7group - DON 7 GROUP We Serve with Pride</title>
-<meta name="description" content="don7group - DON 7 GROUP Electronics & Repair">
+<meta name="description" content="don7group - DON 7 GROUP Electronics & Repair - 0723398997">
 <link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
@@ -20,7 +20,7 @@ input::placeholder{color:rgba(255,255,255,0.6)}
 .btn-customer{width:100%;padding:14px;background:#0a8a1a;color:white;border:none;border-radius:10px;font-weight:800;font-size:15px;cursor:pointer;letter-spacing:0.5px}
 .btn-customer:hover{background:#0ca320}
 .footer{color:rgba(255,255,255,0.6);font-size:13px;margin-top:18px}
-#error{color:#ff7b7b;font-size:13px;margin-bottom:10px;display:none}
+#error{color:#ff7b7b;font-size:13px;margin-bottom:10px;display:none;background:rgba(255,0,0,0.1);padding:8px;border-radius:8px}
 #shop{display:none;text-align:left;color:white}
 #shop h2{color:#22c55e;text-align:center;margin-bottom:15px}
 .item{background:#2d2d2d;padding:12px;border-radius:10px;margin:8px 0;border-left:4px solid #22c55e}
@@ -32,13 +32,10 @@ input::placeholder{color:rgba(255,255,255,0.6)}
 <h1>DON 7 GROUP</h1>
 <div class="sub">Electronics & Repair</div>
 <div class="motto">We Serve with Pride</div>
-
 <input type="password" id="password" placeholder="Password: 0723398997">
 <div id="error">Wrong password!</div>
-
 <button class="btn-admin" onclick="loginAdmin()">LOGIN AS ADMIN</button>
 <button class="btn-customer" onclick="viewShop()">I AM CUSTOMER - VIEW SHOP</button>
-
 <div class="footer">Admin: 0723398997</div>
 </div>
 
@@ -49,19 +46,19 @@ input::placeholder{color:rgba(255,255,255,0.6)}
 <div class="item">💻 Laptop & Electronics Sales</div>
 <div class="item">🔌 Accessories - Chargers, Cables</div>
 <div class="item">⚡ M-Pesa & Airtime</div>
-<div class="item">📞 0723398997</div>
-<div class="item">📍 don7group</div>
+<div class="item">📞 Contact: 0723398997</div>
+<div class="item">📍 Google: don7group</div>
 <button class="btn-admin" onclick="backToLogin()" style="margin-top:20px">Back to Login</button>
 </div>
 
 <script>
 function loginAdmin(){
-  const p = document.getElementById('password').value.trim();
-  if(p === "0723398997" || p === "Don7group" || p === "don7group"){
+  const p=document.getElementById('password').value.trim();
+  if(p==="0723398997" || p==="Don7group" || p==="don7group"){
     document.getElementById('loginBox').style.display='none';
     document.getElementById('shop').style.display='block';
     document.getElementById('error').style.display='none';
-  } else {
+  }else{
     document.getElementById('error').style.display='block';
   }
 }
@@ -73,6 +70,7 @@ function backToLogin(){
   document.getElementById('shop').style.display='none';
   document.getElementById('loginBox').style.display='block';
   document.getElementById('password').value='';
+  document.getElementById('error').style.display='none';
 }
 document.getElementById('password').addEventListener('keypress',function(e){if(e.key==='Enter'){loginAdmin()}});
 </script>
