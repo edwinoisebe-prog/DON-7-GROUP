@@ -14,11 +14,12 @@ body{margin:0;font-family:Arial;background:#0a1122}
 .tab{flex:1;padding:10px;text-align:center;cursor:pointer;border:none;background:white;font-weight:bold;font-size:11px;min-width:55px}
 .tab.active{background:#0a192f;color:white}
 .content{padding:10px}
-.card{background:white;padding:12px;border-radius:8px;margin-bottom:8px}
-input,select,button{width:100%;padding:10px;margin:4px 0;border-radius:5px;border:1px solid #ddd;box-sizing:border-box}
+/* CHANGED FOR COLOURS ONLY - MAKES TEXT BLACK VISIBLE */
+.card{background:white;padding:12px;border-radius:8px;margin-bottom:8px;color:#000000}
+input,select,button{width:100%;padding:10px;margin:4px 0;border-radius:5px;border:2px solid #000000;box-sizing:border-box;color:#000000;background:#ffffff;font-size:16px;font-weight:bold}
+select option{color:#000000;background:#ffffff}
 button{background:#0a192f;color:white;font-weight:bold;border:none;cursor:pointer}
 button.green{background:#008a00} button.red{background:#d32f2f}
-/* BLACK LOGIN LIKE YOUR PHOTO */
 #loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000;display:flex;align-items:center;justify-content:center;z-index:9999}
 .loginBox{background:#1e1e1e;padding:35px 25px;border-radius:16px;width:90%;max-width:380px;text-align:center;border:1px solid #2a2a2a}
 .loginBox h2{color:white;font-size:32px;margin:0 0 15px}
@@ -28,7 +29,7 @@ button.green{background:#008a00} button.red{background:#d32f2f}
 .loginBox .blueBtn{background:#0f2d5e;color:white;padding:15px;border-radius:10px;font-weight:800}
 .loginBox .greenBtn{background:#008a00;color:white;padding:15px;border-radius:10px;font-weight:800}
 table{width:100%;border-collapse:collapse;background:white;font-size:13px}
-th,td{padding:8px;text-align:left;border-bottom:1px solid #eee}
+th,td{padding:8px;text-align:left;border-bottom:1px solid #eee;color:#000000}
 th{background:#0a192f;color:white}
 .publicBar{background:#64ffda;color:#0a192f;padding:8px;text-align:center;font-weight:bold}
 </style>
@@ -74,6 +75,8 @@ th{background:#0a192f;color:white}
 <div id="sell" class="tabContent">
 <div class="card">
 <h3>💰 Sell Product</h3>
+<!-- NEW SEARCH BOX ADDED ONLY HERE -->
+<input type="text" id="sellSearch" placeholder="🔍 Search product..." onkeyup="filterSellProducts()" style="background:#ffffcc">
 <select id="sellProduct"></select>
 <input type="number" id="sellQty" value="1" min="1" placeholder="Quantity">
 <input type="number" id="sellPrice" placeholder="Selling Price">
@@ -165,6 +168,23 @@ function logout(){location.reload();}
 function showTab(t){document.querySelectorAll('.tabContent').forEach(c=>c.style.display='none');document.getElementById(t).style.display='block';document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));if(event&&event.target)event.target.classList.add('active');render();}
 document.getElementById('payMethod').onchange=function(){document.getElementById('custNameSell').style.display=this.value==='Credit/Debt'?'block':'none';};
 function addProduct(){let n=document.getElementById('pName').value,s=+document.getElementById('pStock').value,b=+document.getElementById('pBuy').value,sl=+document.getElementById('pSell').value;if(!n)return alert('Enter product name');let ex=products.find(p=>p.name.toLowerCase()===n.toLowerCase());if(ex){ex.stock+=s;ex.buy=b;ex.sell=sl;}else products.push({name:n,stock:s,buy:b,sell:sl});saveAll();alert('Product Saved! '+n); document.getElementById('pName').value='';}
+// NEW SEARCH FUNCTION ADDED ONLY HERE
+function filterSellProducts(){
+ let term=document.getElementById('sellSearch').value.toLowerCase().trim();
+ let sel=document.getElementById('sellProduct');
+ sel.innerHTML='';
+ products.forEach((p,i)=>{
+   if(p.name.toLowerCase().includes(term)){
+     let o=document.createElement('option');
+     o.value=i;
+     o.textContent=p.name+' - '+p.stock+' left - KES '+p.sell;
+     sel.appendChild(o);
+   }
+ });
+ if(sel.options.length>0){
+   document.getElementById('sellPrice').value=products[sel.value].sell;
+ }
+}
 function render(){
 let today=new Date().toDateString();let tSales=sales.filter(s=>new Date(s.time).toDateString()===today);
 document.getElementById('todaySales').innerText='KES '+tSales.reduce((a,b)=>a+b.total,0);
@@ -173,7 +193,10 @@ document.getElementById('tillBal').innerText='KES '+till.balance;
 document.getElementById('totalDebts').innerText='KES '+debts.reduce((a,b)=>a+b.amount,0);
 document.getElementById('tillDisplay').innerText='KES '+till.balance;
 document.getElementById('prodTable').innerHTML=products.map((p,i)=>`<tr><td>${p.name}</td><td>${p.stock}</td><td>${p.buy}</td><td>${p.sell}</td><td><button onclick="products.splice(${i},1);saveAll()" style="padding:3px">X</button></td></tr>`).join('');
-document.getElementById('sellProduct').innerHTML=products.map((p,i)=>`<option value="${i}">${p.name} - ${p.stock} left - KES ${p.sell}</option>`).join('');
+// KEEP SEARCH FILTER WHEN RENDERING
+let term=document.getElementById('sellSearch')?document.getElementById('sellSearch').value.toLowerCase().trim():'';
+let filtered=term?products.map((p,i)=>({p,i})).filter(x=>x.p.name.toLowerCase().includes(term)):products.map((p,i)=>({p,i}));
+document.getElementById('sellProduct').innerHTML=filtered.map(x=>`<option value="${x.i}">${x.p.name} - ${x.p.stock} left - KES ${x.p.sell}</option>`).join('');
 document.getElementById('salesTable').innerHTML=sales.slice().reverse().map(s=>`<tr><td>${new Date(s.time).toLocaleTimeString()}</td><td>${s.name}</td><td>${s.qty}</td><td>${s.total}</td><td>${s.pay||'Cash'}</td></tr>`).join('');
 document.getElementById('quickStock').innerHTML=products.map(p=>`${p.name}: <b>${p.stock}</b> ${p.stock<5?'<span style=color:red>LOW!</span>':''}<br>`).join('');
 document.getElementById('tillHistory').innerHTML=till.history.slice().reverse().map(h=>`${new Date(h.time).toLocaleString()} - ${h.type} - KES ${h.amount} - ${h.note}<br>`).join('');
