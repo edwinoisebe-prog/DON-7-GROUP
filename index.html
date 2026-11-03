@@ -47,20 +47,17 @@ th{background:#0a192f;color:white}
 <p id="err" style="color:#ff7777;display:none">Wrong! Use 0723398997 - Opening anyway...</p>
 </div>
 </div>
-
 <div class="header">
 <div><b>DON 7 GROUP</b><br><small id="viewMode">Admin - 0723398997</small></div>
 <div><button onclick="logout()" style="width:auto;padding:6px 12px">Logout</button></div>
 </div>
 <div class="publicBar">📱 Order via WhatsApp: 0723398997</div>
-
 <div class="stats" id="adminStats">
 <div class="stat"><small>Today Sales</small><h2 id="todaySales">0</h2></div>
 <div class="stat"><small>Today Profit</small><h2 id="todayProfit">0</h2></div>
 <div class="stat"><small>Mpesa Till</small><h2 id="tillBal">0</h2></div>
 <div class="stat"><small>Debts</small><h2 id="totalDebts" style="color:red">0</h2></div>
 </div>
-
 <div class="tabs" id="tabs">
 <button class="tab active" onclick="showTab('sell')">SELL</button>
 <button class="tab" onclick="showTab('products')">STOCK</button>
@@ -70,7 +67,6 @@ th{background:#0a192f;color:white}
 <button class="tab" onclick="showTab('shop')">SHOP</button>
 <button class="tab" onclick="showTab('add')">ADD ITEM</button>
 </div>
-
 <div class="content">
 <div id="sell" class="tabContent">
 <div class="card">
@@ -87,16 +83,13 @@ th{background:#0a192f;color:white}
 </div>
 <div class="card"><h4>Low Stock Alert</h4><div id="quickStock"></div></div>
 </div>
-
 <div id="products" class="tabContent" style="display:none">
 <table><thead><tr><th>Product</th><th>Stock</th><th>Buy</th><th>Sell</th><th>Del</th></tr></thead><tbody id="prodTable"></tbody></table>
 </div>
-
 <div id="sales" class="tabContent" style="display:none">
 <div class="card"><button onclick="exportExcel()">Export to Excel CSV</button> <button class="red" onclick="clearSales()">Clear</button></div>
 <table><thead><tr><th>Time</th><th>Item</th><th>Qty</th><th>Total</th><th>Pay</th></tr></thead><tbody id="salesTable"></tbody></table>
 </div>
-
 <div id="mpesa" class="tabContent" style="display:none">
 <div class="card">
 <h3>📲 Mpesa Till</h3>
@@ -108,7 +101,6 @@ th{background:#0a192f;color:white}
 </div>
 <div class="card"><h4>History</h4><div id="tillHistory"></div></div>
 </div>
-
 <div id="debts" class="tabContent" style="display:none">
 <div class="card">
 <h3>📓 Customer Debts</h3>
@@ -120,7 +112,6 @@ th{background:#0a192f;color:white}
 </div>
 <table><thead><tr><th>Name</th><th>Phone</th><th>Amount</th><th>Item</th><th>Paid</th></tr></thead><tbody id="debtTable"></tbody></table>
 </div>
-
 <div id="shop" class="tabContent" style="display:none">
 <div class="card" style="text-align:center">
 <h2>Don 7 Group Electronics</h2><p>We Serve with Pride</p><p>📞 0723398997</p>
@@ -128,7 +119,6 @@ th{background:#0a192f;color:white}
 </div>
 <div id="publicProducts"></div>
 </div>
-
 <div id="add" class="tabContent" style="display:none">
 <div class="card">
 <h3>➕ Add New Product - FIELD TO ENTER PRODUCTS</h3>
@@ -140,7 +130,6 @@ th{background:#0a192f;color:white}
 </div>
 </div>
 </div>
-
 <script>
 let products = JSON.parse(localStorage.getItem('don7_products_v2')||'null') || [
 {name:"Opas Phone",stock:15,buy:1200,sell:1500},
